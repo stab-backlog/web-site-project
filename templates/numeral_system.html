@@ -11,22 +11,36 @@
     <title>Numeral system</title>
 </head>
 <body>
-<h1>Numeral system</h1>
-<form method="post">
-    <p>
-        <b>The <em><strong>original</strong></em> number:</b>
-        <input type="text" placeholder="Enter the number" value="10" style="width: 500px; " name="ton"/>
-    </p>
 
-    <p>
-        <b>The <em><strong>original</strong></em> number system:</b>
-        <input type="text" placeholder="" value="10" style="width: 50px; text-align: center;" name="tons"/>
+<div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <span class="fs-4">Home page</span>
+    </a>
 
-        <b style="padding-left: 10px">The <em><strong>desired</strong></em> number system:</b>
-        <input type="text" placeholder="" value="10" style="width: 50px; text-align: center;" name="tdns"/>
-    </p>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/change">Change</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/numeral_system">Num. system</a>
+    </nav>
+</div>
 
-    <button type="submit" class="btn-primary">Submit</button>
-</form>
+<div class="container">
+    <h1>Numeral system</h1>
+    <form method="post">
+        <p>
+            <b>The <em><strong>original</strong></em> number:</b>
+            <input required pattern="^[ 0-9]+$" type="text" placeholder="Enter the number" value="10" style="width: 500px; " name="ton"/>
+        </p>
+
+        <p>
+            <b>The <em><strong>original</strong></em> number system:</b>
+            <input required pattern="^[ 0-9]+$" type="text" placeholder="" value="10" style="width: 50px; text-align: center;" name="tons"/>
+
+            <b style="padding-left: 10px">The <em><strong>desired</strong></em> number system:</b>
+            <input required pattern="^[ 0-9]+$" type="text" placeholder="" value="10" style="width: 50px; text-align: center;" name="tdns"/>
+        </p>
+
+        <button type="submit" class="btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 from flask import Flask, request, url_for, render_template
 from classes import FromSystemToSystem, ToHtml
+from xml.sax.saxutils import escape
 
 app = Flask(__name__)
 
@@ -35,8 +36,16 @@ def change():
         return render_template('change.html')
 
     elif request.method == 'POST':
-        f_text = request.form['f_text']
-        s_text = request.form['s_text']
+        f_text = escape(request.form['f_text'])
+        s_text = escape(request.form['s_text'])
+        switch = request.form['switch']
+
+        to_html = ToHtml()
+
+        if switch == 'tog':
+            return to_html.text_tog(f_text, s_text)
+        elif switch == 'sep':
+            return to_html.text_sep(f_text, s_text)
 
 
 if __name__ == '__main__':

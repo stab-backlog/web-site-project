@@ -1,3 +1,6 @@
+from difflib import SequenceMatcher
+
+
 class FromSystemToSystem:
     def from_ten_to_n(self, original_number, system_to):
         number_o = ''
@@ -86,6 +89,51 @@ class ToHtml:
         for element in range(1, len(lst) + 1):
             trans_list.insert(-1 - element, '<pre>{}</pre>'.format(lst[-element]))
         return ''.join(trans_list)
+
+    def text_tog(self, first, second):
+        codes = SequenceMatcher(None, first, second)
+        answer = codes.get_opcodes()
+        full_text = []
+
+        for tag, i1, i2, j1, j2 in answer:
+            if tag == 'equal':
+                full_text.append(first[i1:i2])
+            elif tag == 'replace':
+                full_text.append(f'<span style="color: red; font-weight: bold;">{first[i1:i2]}</span>'
+                                 f'<span style="color: green; font-weight: bold;">{second[j1:j2]}</span>')
+            elif tag == 'insert':
+                full_text.append(f'<span style="color: green; font-weight: bold;">{second[j1:j2]}</span>')
+            elif tag == 'delete':
+                full_text.append(f'<span style="color: red; font-weight: bold;">{first[i1:i2]}</span>')
+
+        return f'<!doctype html><html lang="en"><body>' \
+               f'<p style="font-weight: bold">{"".join(full_text)}</p>' \
+               f'</body></html>'
+
+    def text_sep(self, first, second):
+        codes = SequenceMatcher(None, first, second)
+        answer = codes.get_opcodes()
+
+        f_lst, s_lst = [], []
+
+        for tag, i1, i2, j1, j2 in answer:
+            if tag == 'equal':
+                f_lst.append(first[i1:i2])
+                s_lst.append(second[j1:j2])
+            elif tag == 'replace':
+                f_lst.append(f'<span style="color: blue; font-weight: bold;">{first[i1:i2]}</span>')
+                s_lst.append(f'<span style="color: blue; font-weight: bold;">{second[j1:j2]}</span>')
+            elif tag == 'insert':
+                f_lst.append(f'<span style="color: green; font-weight: bold;"> </span>')
+                s_lst.append(f'<span style="color: green; font-weight: bold;">{second[j1:j2]}</span>')
+            elif tag == 'delete':
+                f_lst.append(f'<span style="color: red; font-weight: bold;">{first[i1:i2]}</span>')
+                s_lst.append(f'<span style="color: red; font-weight: bold;"> </span>')
+
+        return f'<!doctype html><html lang="en"><body>' \
+               f'<h1>First text</h1><p style="font-weight: bold">{"".join(f_lst)}</p>' \
+               f'<h1>Second text</h1><p style="font-weight: bold">{"".join(s_lst)}</p>' \
+               f'</body></html>'
 
 
 def elem(dictionary, value):

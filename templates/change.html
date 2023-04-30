@@ -11,22 +11,43 @@
     <title>Change</title>
     <style>
         textarea {
-        resize: none;
-        width: 40%;
-        height: 125px;
-        margin: 10px;
+            resize: none;
+            width: 40%;
+            height: 125px;
+            margin: 10px;
+            font-size: 20px;
+            border: 1px solid gray;
+            outline: none;
         }
     </style>
 </head>
 <body>
-<h1>Change</h1>
-<form method="post">
-    <p>
-        <textarea placeholder="Enter the text..." name="f_text"></textarea>
-        <textarea placeholder="Enter the text..." name="s_text"></textarea>
-    </p>
 
-    <button type="submit" class="btn-primary">Submit</button>
-</form>
+<div class="container d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <span class="fs-4">Home page</span>
+    </a>
+
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/change">Change</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/numeral_system">Num. system</a>
+    </nav>
+</div>
+
+<div class="container">
+    <h1>Change</h1>
+    <form method="post">
+        <p>
+            <textarea required placeholder="Enter the text..." name="f_text"></textarea>
+            <textarea required placeholder="Enter the text..." name="s_text"></textarea>
+        </p>
+        <p>
+            <label><input name="switch" type="radio" value="sep">Separately</label>
+            <label><input name="switch" type="radio" value="tog" checked>Together</label>
+        </p>
+
+        <button type="submit" class="btn-primary">Submit</button>
+    </form>
+</div>
 </body>
 </html>
